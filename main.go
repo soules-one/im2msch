@@ -1224,9 +1224,9 @@ func BuildSchematicMSCH(programs [][]string, name string, imageW, imageH int) ([
 	})
 
 	// 3. message
-	/*WriteTile(&payload, blockMessage, messageX, controlY, func() {
-		WriteObjectString(&payload, "Press button to rebuild image")
-	})*/
+	WriteTile(&payload, blockMessage, messageX, controlY, func() {
+		WriteObjectString(&payload, "Press button to rebuild image. Built using github.com/soules-one/im2msch")
+	})
 	WriteTile(&payload, blockMessage, messageX, controlY, func() {
 		WriteObjectNil(&payload)
 	})
