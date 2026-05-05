@@ -11,6 +11,8 @@ There is now validation checks for sizes of schematics so be aware it might not 
 `im2msch filename schematic_name width height [area] --palette-step [value] --palette-size [value]
 `
 
+If width and height are set to 80x80 or 176x176 schematic will use logic display and large logic display instead of tiles.
+
 After generation you will find preview image, processors programs, binary schematic and txt string in .schem.txt file that you can import in game.
 
 ##### flags and area are optional and used for schematic optimisation
