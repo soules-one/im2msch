@@ -76,6 +76,12 @@ func main() {
 		}
 	}
 
+	if w == 80 && h == 80 {
+		common.DisplayBlockName = "logic-display"
+	}
+	if w == 176 && h == 176 {
+		common.DisplayBlockName = "large-logic-display"
+	}
 	pp, err := imageloader.LoadAsRGBA(inp, w, h)
 	if err != nil {
 		panic(err)

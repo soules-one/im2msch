@@ -4,7 +4,7 @@ package common
 
 var MinArea = 1
 var MaxNodes = 450
-var MaxDrawOp = 5
+var MaxDrawOp = 3
 var PaletteSize = 0
 var PaletteStep = 1
 

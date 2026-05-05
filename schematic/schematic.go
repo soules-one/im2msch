@@ -222,17 +222,30 @@ func BuildSchematicMSCH(programs [][]string, name string, imageW, imageH int) ([
 	displayTileCount := displayTilesX * displayTilesY
 	tileCount := 1 + 1 + displayTileCount + len(programs)
 
-	payload.I32(int32(tileCount))
-
 	// 1. display grid FIRST
-	for dx := 0; dx < displayTilesX; dx++ {
-		for dy := 0; dy < displayTilesY; dy++ {
-			x := displayX + dx
-			y := displayY + dy
-
-			WriteTile(&payload, blockDisplay, x, y, func() {
+	if (imageH == 80 && imageW == 80) || (imageH == 176 && imageW == 176) {
+		tileCount := 1 + 1 + 1 + len(programs)
+		payload.I32(int32(tileCount))
+		if imageH == 80 {
+			WriteTile(&payload, blockDisplay, displayX+1, displayY+1, func() {
 				WriteObjectNil(&payload)
 			})
+		} else {
+			WriteTile(&payload, blockDisplay, displayX+2, displayY+2, func() {
+				WriteObjectNil(&payload)
+			})
+		}
+	} else {
+		payload.I32(int32(tileCount))
+		for dx := 0; dx < displayTilesX; dx++ {
+			for dy := 0; dy < displayTilesY; dy++ {
+				x := displayX + dx
+				y := displayY + dy
+
+				WriteTile(&payload, blockDisplay, x, y, func() {
+					WriteObjectNil(&payload)
+				})
+			}
 		}
 	}
 
@@ -243,10 +256,7 @@ func BuildSchematicMSCH(programs [][]string, name string, imageW, imageH int) ([
 
 	// 3. message
 	WriteTile(&payload, blockMessage, messageX, controlY, func() {
-		WriteObjectString(&payload, "Press button to rebuild image. Built using github.com/soules-one/im2msch")
-	})
-	WriteTile(&payload, blockMessage, messageX, controlY, func() {
-		WriteObjectNil(&payload)
+		WriteObjectString(&payload, "Press button to rebuild image.\nBuilt using github.com/soules-one/im2msch")
 	})
 
 	// 4. processors LAST
