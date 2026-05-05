@@ -40,7 +40,7 @@ Schematic also have switch that can start image regeneration.
 - display border calculation is not implemented
 - on map with lots of processors some draw operation can be omitted, so you may need to press switch to build image properly. As far as I concerned, it is not fixable due to a way my algorithm builds image. Drawing image several times may still be ineffective and taking more time for image to draw.
 
-## Road Map
+## Features to implement
 -  greedy compression algorithms (slow and not totally accurate but may reduce image build speed and command count).
 - gif support
 - different processors placements and display blocks
